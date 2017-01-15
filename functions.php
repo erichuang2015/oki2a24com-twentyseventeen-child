@@ -16,3 +16,13 @@ function remove_more_link_scroll( $link ) {
         return $link;
 }
 add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
+
+/**
+ * メニューに検索フォームを追加します。
+ */
+function add_search_box_to_menu( $items, $args ) {
+    if( $args->theme_location == 'primary' ){
+        return $items . '<li>' . get_search_form(false) . '</li>';
+    }
+}
+add_filter( 'wp_nav_menu_items', 'add_search_box_to_menu', 10, 2);
