@@ -16,3 +16,37 @@ function remove_more_link_scroll( $link ) {
         return $link;
 }
 add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
+
+/**
+ * 親テーマのセットアップに追加する処理を定義します。
+ */
+function remove_twentyseventeen_headers() {
+    // デフォルトヘッダー画像登録を削除
+    unregister_default_headers( array(
+        'default-image'
+    ) );
+}
+add_action( 'after_setup_theme', 'remove_twentyseventeen_headers', 11 );
+
+function oki2a24_twentyseventeen_child_setup() {
+    // デフォルトヘッダー画像を設定
+    register_default_headers( array(
+        'P1010303' => array(
+            'url' => '%2$s/assets/images/headers/P1010303.jpg',
+            'thumbnail_url' => '%2$s/assets/images/headers/P1010303.jpg',
+            'description' => 'P1010303'
+        ),
+        'PC312989' => array(
+            'url' => '%2$s/assets/images/headers/PC312989.jpg',
+            'thumbnail_url' => '%2$s/assets/images/headers/PC312989.jpg',
+            'description' => 'PC312989'
+        ),
+        'R0013152' => array(
+            'url' => '%2$s/assets/images/headers/R0013152.jpg',
+            'thumbnail_url' => '%2$s/assets/images/headers/R0013152.jpg',
+            'description' => 'R0013152'
+        )
+    ) );
+}
+add_action( 'after_setup_theme', 'oki2a24_twentyseventeen_child_setup' );
+
